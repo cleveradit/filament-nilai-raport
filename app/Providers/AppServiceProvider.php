@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Spatie\Activitylog\Models\Activity;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Event;
+use App\Listeners\SendTelegramActivityNotification;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(
+            'eloquent.created: Spatie\Activitylog\Models\Activity',
+            [SendTelegramActivityNotification::class, 'handle']
+        );
     }
 }

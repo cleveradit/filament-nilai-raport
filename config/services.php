@@ -21,6 +21,11 @@ return [
     'resend' => [
         'key' => env('RESEND_API_KEY'),
     ],
+    
+    'telegram' => [
+        'token' => env('TELEGRAM_BOT_TOKEN'),
+        'chat_id' => env('TELEGRAM_CHAT_ID'),
+    ],
 
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
